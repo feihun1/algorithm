@@ -1,0 +1,32 @@
+/*递归法*/
+/*left为数组起点，即0，right为数组中元素个数，X为待搜索的元素*/
+int binary_chop(int *a,int left,int n,int X)
+{
+	int mid = (left + n-1) / 2;
+	if (a[mid] == X)
+		return mid;
+	else if (a[mid] > X)
+		binary_chop(a, left, mid - 1, X);
+	else if (a[mid] < X)
+		binary_chop(a, mid + 1, n, X);
+	else
+		return -1;
+}
+/*非递归*/
+/*n为数组中元素个数，X为待搜索的元素*/
+int Binary_chop(int *a, int n, int X)
+{
+	int left = 0, right = n - 1;
+	int mid;
+	while (left <= right)
+	{
+		mid = (left + right) / 2;
+		if (a[mid] == X)
+			return mid;
+		if (a[mid] > X)
+			right = mid - 1;
+		if (a[mid] < X)
+			left = mid + 1;
+	}
+	return -1;
+}
